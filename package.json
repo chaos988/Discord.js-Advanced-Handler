@@ -12,9 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "ascii-table": "^0.0.9",
+    "chalk": "^2.4.2",
     "discord.js": "^13.2.0",
     "glob": "^7.1.7",
     "mongoose": "^6.0.2",
-    "reconlx": "^2.5.1"
+    "reconlx": "^2.5.1",
+    "table": "^6.7.5"
   }
 }
