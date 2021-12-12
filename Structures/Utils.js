@@ -24,8 +24,8 @@ class Utils {
       if (file.name) {
         const properties = { directory, ...file };
         this.client.commands.set(file.name, properties);
-        table.addRow(`${file.name}`, '✅')
-      } else table.addRow(`${file.name}`, `❌`)
+        table.addRow(`${file.name}`, '✅ Loaded')
+      } else table.addRow(`${file.name || "Missing"}`, `❌ Command name is not a string or empty ${splitted[6] + "/" + splitted[7]}`)
       if (file.aliases && Array.isArray(file.aliases)) {
         file.aliases.forEach((alias) =>
           this.client.aliases.set(alias, file.name)
