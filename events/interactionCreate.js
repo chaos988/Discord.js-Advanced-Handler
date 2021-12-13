@@ -21,13 +21,13 @@ client.on("interactionCreate", async (interaction) => {
         }
         interaction.member = interaction.guild.members.cache.get(interaction.user.id);
 
-        cmd.run(client, interaction, args);
+        cmd.run(client, interaction, args, Discord);
     }
 
     // Context Menu Handling
     if (interaction.isContextMenu()) {
         await interaction.deferReply({ ephemeral: false });
         const command = client.slashCommands.get(interaction.commandName);
-        if (command) command.run(client, interaction);
+        if (command) command.run(client, interaction, args, Discord);
     }
 });
