@@ -1,5 +1,6 @@
 const { Client, Collection } = require("discord.js");
 const Command = require("./Command");
+const slashCommand = require("./slashCommand");
 const Utils = require("./Utils");
 
 class client extends Client {
@@ -17,6 +18,9 @@ class client extends Client {
      * @type {Collection<string, Command>}
      */
     this.aliases = new Collection();
+    /**
+     * @type {Collection<string, slashCommand>}
+     */
     this.slashCommands = new Collection();
     this.config = require("./Data/config.json");
     this.colors = require("./Data/colors.json");
