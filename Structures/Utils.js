@@ -55,14 +55,6 @@ class Utils {
     this.client.on("ready", async () => {
       await this.client.application.commands.set(arrayOfSlashCommands);
     });
-    
-    // mongoose
-    const { mongooseConnectionString } = require("./Data/config.json");
-    if (!mongooseConnectionString) return;
-
-    mongoose
-      .connect(mongooseConnectionString)
-      .then(() => console.log("Connected to mongodb"));
   }
 }
 
