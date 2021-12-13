@@ -1,16 +1,17 @@
-const { Client, CommandInteraction } = require("discord.js");
+const slashCommand = require("../../Structures/slashCommand");
 
-module.exports = {
+module.exports = new slashCommand({
     name: "ping",
-    description: "returns websocket ping",
-    type: 'CHAT_INPUT',
-    /**
-     *
-     * @param {Client} client
-     * @param {CommandInteraction} interaction
-     * @param {String[]} args
-     */
-    run: async (client, interaction, args) => {
-        interaction.followUp({ content: `${client.ws.ping}ms!` });
-    },
-};
+    description: "Ping a user",
+    options: [{
+        name: "target",
+        description: "A user to ping",
+        type: "USER",
+        required: true
+    }],
+    type: "CHAT_INPUT",
+    run: async (client, interaction, args, Discord) => {
+        const user = interaction.options.getUser("target") || interaction.user
+        interaction.followUp(`<@${user.id}>`)
+    }
+})
