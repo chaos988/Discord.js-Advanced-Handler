@@ -1,3 +1,4 @@
+const { MessageEmbed } = require("discord.js");
 const Command = require("../../Structures/Command");
 
 module.exports = new Command({
@@ -6,8 +7,10 @@ module.exports = new Command({
   category: "info",
   userPermissions: ["SEND_MESSAGES"],
   botPermissions: ["SEND_MESSAGES"],
-  run: async (client, message, args, Discord) => {
-    const Pinging = new Discord.MessageEmbed()
+  cooldown: 10,
+  premium: false,
+  run: async (client, message, args) => {
+    const Pinging = new MessageEmbed()
       .setTitle("PINGING...")
       .addField("Websocket Ping", "> Pinging. . .", true)
       .addField("API Ping", "> Pinging. . .", true)
@@ -15,16 +18,16 @@ module.exports = new Command({
       .setColor(client.colors.invis);
     const embed = await message.channel.send({ embeds: [Pinging] });
 
-    const websocket = (message.createdTimestamp - Date.now()).toLocaleString();
+    const websocket = (message.createdAt - Date.now()).toLocaleString().replace("-", "");
     const api = client.ws.ping.toLocaleString();
     const msgedit = Math.floor(
       embed.createdAt - message.createdAt
     ).toLocaleString();
 
     let circles = {
-      green: "🟩",
-      yellow: "🟨",
-      red: "🟥",
+      green: "<:theconnectionisexcellent:926841606282309664>",
+      yellow: "<:theconnectionisgood:926841605078532096>",
+      red: "<:theconnectionisbad:926841606831759391>",
     };
 
     const websocketPing =
@@ -36,7 +39,7 @@ module.exports = new Command({
     const apiPing =
       api <= 200
         ? circles.green
-        : apiLatency <= 400
+        : api <= 400
         ? circles.yellow
         : circles.red;
     const edit =
@@ -46,13 +49,13 @@ module.exports = new Command({
         ? circles.yellow
         : circles.red;
 
-    const Pong = new Discord.MessageEmbed()
+    const Pong = new MessageEmbed()
       .setTitle("Pong 🏓")
-      .addField("Websocket Ping", `> ${websocketPing}${websocket}`, true)
+      .addField("Websocket Ping", `> ${websocketPing}${websocket.toLocaleString()}`, true)
       .addField("API Ping", `> ${apiPing}${api}`, true)
       .addField("Message Edit Ping", `> ${edit}${msgedit}`, true)
       .setColor(client.colors.invis);
     embed.edit({ embeds: [Pong] });
-    embed.delete();
+    message.delete();
   },
 });
