@@ -4,11 +4,10 @@ const client = require("./Client");
 /**
  *
  * @param {client} client
- * @param {discord.CommandInteraction | discord.ContextMenuInteraction} interaction
+ * @param {discord.CommandInteraction} interaction
  * @param {String[]} args
- * @param {discord} Discord
  */
-async function runFunction(client, interaction, args, Discord) {}
+async function runFunction(client, interaction, args) {}
 
 class slashCommand {
   /**
