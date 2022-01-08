@@ -7,8 +7,6 @@ module.exports = new Command({
   category: "info",
   userPermissions: ["SEND_MESSAGES"],
   botPermissions: ["SEND_MESSAGES"],
-  cooldown: 10,
-  premium: false,
   run: async (client, message, args) => {
     const Pinging = new MessageEmbed()
       .setTitle("PINGING...")
