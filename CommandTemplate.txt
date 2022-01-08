@@ -6,5 +6,5 @@ module.exports = new Command({
   category: "", // Command Category
   userPermissions: [""], // User Permission Checking
   botPermissions: [""], // Bot Permission Checking
-  run: async (client, message, args, Discord) => {},
+  run: async (client, message, args) => {},
 });
