@@ -1,5 +1,5 @@
 const discord = require("discord.js");
-const Client = require("../index");
+const Client = require("./Client");
 
 /**
  * @param {Client} client
