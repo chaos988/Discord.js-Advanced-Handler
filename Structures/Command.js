@@ -6,7 +6,7 @@ const Client = require("../index");
  * @param {discord.Message} message
  * @param {Array<string>} args
  */
-function RunFunction(client, message, args) {}
+async function RunFunction(client, message, args) {}
 
 class Command {
   /**
