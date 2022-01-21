@@ -20,7 +20,7 @@ client.on("messageCreate", async (message) => {
 
   if (!command) return;
 
-  if (!message.member.permissions.has(command.userPermissions)) {
+  if (!message.member.permissions.has(command.userPermissions || [])) {
     const userPermission = new Discord.MessageEmbed()
       .setTitle("MISSING PERMISSIONS")
       .setDescription(`You are missing \`${command.userPermissions.join(", ").replace(/\_/g, " ")}\``)
@@ -29,7 +29,7 @@ client.on("messageCreate", async (message) => {
     message.channel.send({ embeds: [userPermission] })
   }
 
-  if (!message.guild.me.permissions.has(command.botPermissions)) {
+  if (!message.guild.me.permissions.has(command.botPermissions || [])) {
     const userPermission = new Discord.MessageEmbed()
       .setTitle("MISSING PERMISSIONS")
       .setDescription(`I am missing \`${command.botPermissions.join(", ").replace(/\_/g, " ")}\``)
@@ -38,5 +38,5 @@ client.on("messageCreate", async (message) => {
     message.channel.send({ embeds: [userPermission] })
   }
 
-  command.run(client, message, args, Discord);
+  await command.run(client, message, args, Discord);
 });
